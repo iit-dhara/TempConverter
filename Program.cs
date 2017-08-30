@@ -28,20 +28,18 @@ namespace consoleApp
 
         private static float F2C(string input)
         {
-            float fahrenheit = 0;
+            	float fahrenheit = 0;
 
-            try
-            {
-				fahrenheit = float.Parse(input);
-			}
-            catch (Exception e)
-            {
-                Console.WriteLine($"Exception occured with the message {e.Message} and a stack trace of {e.StackTrace}");
-                throw e;
-            }
-
-            var result = (fahrenheit - 32) * (5.0f / 9);
-            return result;
+                //fahrenheit = float.Parse(input);
+                if (float.TryParse(input, out fahrenheit))
+                {
+                    var result = (fahrenheit - 32) * (5.0f / 9);
+                    return result;
+                }
+                else
+                {
+                    throw new Exception($"Your input {input} could npt be converted into the number..");
+                }
         }
 
 		private static float C2F(string input1)
